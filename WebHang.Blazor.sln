@@ -9,7 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoAPI", "TodoAPI\TodoAPI.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{0D9A6451-5A2A-44DC-B5E8-4AD8ED450A65}"
 	ProjectSection(SolutionItems) = preProject
-		TodoWords.cs = TodoWords.cs
+		TodoContext.cs = TodoContext.cs
+		TodoWord.cs = TodoWord.cs
 	EndProjectSection
 EndProject
 Global

@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hangman.Blazor", "Hangman.Blazor\Hangman.Blazor.csproj", "{09069207-4FBD-409B-B749-EAE0A96D396C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoAPI", "TodoAPI\TodoAPI.csproj", "{F920191D-45DD-4CA7-8036-02E3C0D2DF10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoAPI", "TodoAPI\TodoAPI.csproj", "{F920191D-45DD-4CA7-8036-02E3C0D2DF10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{0D9A6451-5A2A-44DC-B5E8-4AD8ED450A65}"
+	ProjectSection(SolutionItems) = preProject
+		TodoWords.cs = TodoWords.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

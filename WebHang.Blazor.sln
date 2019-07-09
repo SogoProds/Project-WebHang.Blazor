@@ -7,12 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hangman.Blazor", "Hangman.B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoAPI", "TodoAPI\TodoAPI.csproj", "{F920191D-45DD-4CA7-8036-02E3C0D2DF10}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{0D9A6451-5A2A-44DC-B5E8-4AD8ED450A65}"
-	ProjectSection(SolutionItems) = preProject
-		TodoContext.cs = TodoContext.cs
-		TodoWord.cs = TodoWord.cs
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

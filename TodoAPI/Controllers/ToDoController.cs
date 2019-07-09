@@ -46,5 +46,47 @@ namespace TodoAPI.Controllers
 
             return todoWord;
         }
+
+        // POST: api/Todo
+        [HttpPost]
+        public async Task<ActionResult<TodoWord>> PostTodoWord(TodoWord word)
+        {
+            _context.TodoWords.Add(word);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetTodoWord), new { id = word.Id }, word);
+        }
+
+        // PUT: api/Todo/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutTodoWord(int id, TodoWord word)
+        {
+            if (id != word.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(word).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // DELETE: api/Todo/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTodoWord(long id)
+        {
+            var todoWord = await _context.TodoWords.FindAsync(id);
+
+            if (todoWord == null)
+            {
+                return NotFound();
+            }
+
+            _context.TodoWords.Remove(todoWord);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

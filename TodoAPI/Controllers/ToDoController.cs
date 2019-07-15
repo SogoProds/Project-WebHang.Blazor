@@ -7,7 +7,7 @@ using TodoAPI.Models;
 
 namespace TodoAPI.Controllers
 {
-    [Route("api/[todo]")]
+    [Route("api/")]
     [ApiController]
     public class TodoController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace TodoAPI.Controllers
             {
                 // Create a new TodoWord if collection is empty,
                 // which means you can't delete all TodoWords.
-                _context.TodoWords.Add(new TodoWord { Word = "Word1" });
+                _context.TodoWords.Add(new TodoWord { Word = "Word1" , Difficulty = "Easy"});
                 _context.SaveChanges();
             }
         }

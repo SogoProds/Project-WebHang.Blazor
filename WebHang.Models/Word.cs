@@ -12,7 +12,7 @@ namespace WebHang.Models
         Meduim,
         Hard
     }
-    class Word //not done!!!//
+    public class Word
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

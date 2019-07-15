@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebHang.Models
 {
-    class Player
+    public class Player
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

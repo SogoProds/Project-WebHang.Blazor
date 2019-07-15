@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebHang.Models
 {
-    class Highscore
+    public class Highscore
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

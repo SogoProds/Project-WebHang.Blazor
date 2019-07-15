@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using WebHang.Models;
 
 namespace WebHang.Data
 {
@@ -19,6 +20,6 @@ namespace WebHang.Data
         public DbSet<Player> Players { get; set; }
         public DbSet<Word> Words { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Highscore>
+        public DbSet<Highscore> Highscores { get; set; }
     }
 }

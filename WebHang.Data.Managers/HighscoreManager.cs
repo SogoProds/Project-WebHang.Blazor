@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WebHang.Data.Data_Interfaces;
 using WebHang.Models;
 
 namespace WebHang.Data.Managers
 {
-    public class HighscoreManager : IDataRepositoryCommon<Highscore>
+    public class HighscoreManager : IHighscoreManager<Highscore>
     {
         readonly DBContext dbContext;
 
@@ -18,6 +19,27 @@ namespace WebHang.Data.Managers
         public IEnumerable<Highscore> GetAll()
         {
             return dbContext.Highscores.ToList();
+        }
+        public IEnumerable<Highscore> Get20TopResultsTotal()
+        {
+            return dbContext.Highscores.OrderByDescending(x => x.HighscoreTotal).Take(20);
+        }
+        public IEnumerable<Highscore> Get20TopResultsEasy()
+        {
+            return dbContext.Highscores.OrderByDescending(x => x.HighscoreEasy).Take(20);
+        }
+        public IEnumerable<Highscore> Get20TopResultsMedium()
+        {
+            return dbContext.Highscores.OrderByDescending(x => x.HighscoreMedium).Take(20);
+        }
+        public IEnumerable<Highscore> Get20TopResultsHard()
+        {
+            return dbContext.Highscores.OrderByDescending(x => x.HighscoreHard).Take(20);
+        }
+        public Highscore GetPersonalHighscore(int id)
+        {
+            var personalHighscore = dbContext.Highscores.Where(x => x.HighscorePlayerId == id).ToList();
+            return personalHighscore[0];
         }
         //Might add later
         /*

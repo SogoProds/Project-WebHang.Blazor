@@ -24,7 +24,7 @@ namespace WebHang.Models
         [Required]
         public int WordCategoryId { get; set; }
 
-        [ForeignKey("Category")]
+        [ForeignKey("WordCategoryId")]
         public virtual Category Category { get; set; }
     }
 }

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WebHang.Data.Data_Interfaces;
 using WebHang.Models;
 
 namespace WebHang.Data.Managers
 {
-    public class CategoryManager : IDataRepositoryCommon<Category>
+    public class CategoryManager : ICategoryManager<Category>
     {
         readonly DBContext dbContext;
 

@@ -32,6 +32,9 @@ namespace HangingAPI
             //services.AddDbContext<CarContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<DBContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:DefaultConnection"]));
             services.AddScoped<IDataRepositoryCommon<Word>, WordManager>();
+            services.AddScoped<IDataRepositoryCommon<Player>, PlayerManager>();
+            services.AddScoped<IDataRepositoryCommon<Category>, CategoryManager>();
+            services.AddScoped<IDataRepositoryCommon<Highscore>, HighscoreManager>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 

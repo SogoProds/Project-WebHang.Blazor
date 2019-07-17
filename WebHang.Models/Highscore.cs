@@ -18,7 +18,7 @@ namespace WebHang.Models
         public int? HighscoreHard { get; set; }
         public int? HighscoreTotal { get; set; }
 
-        [ForeignKey("Player")]
+        [ForeignKey("HighscorePlayerId")]
         public virtual Player Player { get; set; }
     }
 }

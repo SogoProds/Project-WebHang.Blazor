@@ -1,0 +1,14 @@
+﻿@page "/players"
+@using System.Net.Http
+@inject HttpClient HttpClient
+
+<h1>Players</h1>
+
+@functions
+{
+    private List<Player> players = new List<Player>();
+
+    protected override async Task OnInitAsync() => await GetAll();
+
+    private async Task GetAll() => players = await HttpClient.GetJsonAsync<List<Player>>("api/player");
+}

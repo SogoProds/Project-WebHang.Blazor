@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WebHang.Data.Data_Interfaces;
 using WebHang.Models;
 
 namespace WebHang.Data.Managers
 {
-    public class PlayerManager : IDataRepositoryCommon<Player>
+    public class PlayerManager : IPlayerManager<Player>
     {
         readonly DBContext dbContext;
 

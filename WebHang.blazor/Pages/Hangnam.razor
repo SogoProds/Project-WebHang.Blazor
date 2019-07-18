@@ -21,18 +21,37 @@
                     <td>@game.GameWordToGuess</td>
                     <td>@game.GameWordHiddenLetters</td>
                     <td>@game.GameMistakes</td>
+                    <td>@word[1].WordContent</td>
                 </tr>
             }
         </tbody>
     </table>
 
 @code {
+Word[] word = new Word[100];
+
+ public enum WordDifficulties
+    {
+        Easy,
+        Meduim,
+        Hard
+    }
+
+    public class Word
+    {
+        public int WordId { get; set; }
+        public string WordContent { get; set; }
+        public WordDifficulties WordDifficulty { get; set; }
+        public int WordCategoryId { get; set; }
+    }
+
+
 
 Game game = new Game();
 
 protected override async Task OnInitAsync()
 {
-    game = await Http.GetJsonAsync<Game>("https://localhost:44387/api/game/Start");
+    word = await Http.GetJsonAsync<Word[]>("https://localhost:44387/api/word");
 }
 
 class Game

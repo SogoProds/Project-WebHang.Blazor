@@ -28,10 +28,10 @@ namespace HangingAPI.Controllers
             IEnumerable<Word> words = dataRepository.GetAll();
             return Ok(words);
         }
-
+        
         // GET api/word/5
         [HttpGet("{id}", Name = "GetWordById")]
-        public IActionResult Get(int id)
+        public IActionResult GetWordById(int id)
         {
             Word word = dataRepository.GetById(id);
 

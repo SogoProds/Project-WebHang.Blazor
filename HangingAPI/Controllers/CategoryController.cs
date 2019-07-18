@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebHang.Data;
+using WebHang.Data.Data_Interfaces;
 using WebHang.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,9 +14,9 @@ namespace HangingAPI.Controllers
     [Route("api/category")]
     public class CategoryController : Controller
     {
-        private readonly IDataRepositoryCommon<Category> dataRepository;
+        private readonly ICategoryManager<Category> dataRepository;
 
-        public CategoryController(IDataRepositoryCommon<Category> dataRepository)
+        public CategoryController(ICategoryManager<Category> dataRepository)
         {
             this.dataRepository = dataRepository;
         }

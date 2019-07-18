@@ -15,7 +15,7 @@ namespace WebHang.Data.Managers
             IsWordGuessed = false;
             IsHintUsed = false;
             MistakesLimit = 9;
-            Game = new Game(WordToBeGuessed);
+            CurrentGame = new Game(WordToBeGuessed);
             FinalScore = 0.0F;
         }
         
@@ -24,41 +24,40 @@ namespace WebHang.Data.Managers
         public byte MistakesLimit { get; private set; }
         public float FinalScore { get; private set; }
         public Word WordToBeGuessed { get; set; }
-        public Game Game { get; set; }
+        public Game CurrentGame { get; set; }
         
         public Game Guess(char guess)
         {
-            string guessString = new string(guess, 1);
-            if (WordToBeGuessed.WordContent.Contains(guessString))
+            if (CurrentGame.GameWordToGuess.Contains(guess))
             {
-                for (int i = 0; i < Game.GameWordToGuess.Length; i++)
+                for (int i = 0; i < CurrentGame.GameWordToGuess.Length; i++)
                 {
-                    if (Game.GameWordHiddenLetters[i] == guess)
+                    if (CurrentGame.GameWordHiddenLetters[i] == guess)
                     {
-                        return Game;
+                        return CurrentGame;
                     }
-                    else if (Game.GameWordToGuess[i] == guess)
+                    if (CurrentGame.GameWordToGuess[i] == guess)
                     {
-                        var stringHelper = Game.GameWordHiddenLetters.ToCharArray();
+                        StringBuilder stringHelper = new StringBuilder(CurrentGame.GameWordHiddenLetters);
                         stringHelper[i] = guess;
-                        Game.GameWordHiddenLetters = stringHelper.ToString();
+                        CurrentGame.GameWordHiddenLetters = stringHelper.ToString();
                     }
                 }
             }
             else
             {
-                Game.GameMistakes++;
+                CurrentGame.GameMistakes++;
             }
 
-            return Game;
+            return CurrentGame;
         }
         public Game Hint()
         {
             Dictionary<char, byte> lettersFrequency = new Dictionary<char, byte>();
-            for (byte i = 0; i < Game.GameWordToGuess.Length - 1; i++)
+            for (byte i = 0; i < CurrentGame.GameWordToGuess.Length - 1; i++)
             {
                 var stringHelper = WordToBeGuessed.WordContent[i].ToString();
-                if (lettersFrequency.ContainsKey(WordToBeGuessed.WordContent[i]) && !Game.GameWordHiddenLetters.Contains(stringHelper))
+                if (lettersFrequency.ContainsKey(WordToBeGuessed.WordContent[i]) && !CurrentGame.GameWordHiddenLetters.Contains(stringHelper))
                 {
                     lettersFrequency[WordToBeGuessed.WordContent[i]]++;
                 }
@@ -89,21 +88,20 @@ namespace WebHang.Data.Managers
 
             char randomChar = keysWithLowestFrequency[randomId];
             
-            for (byte i = 0; i < Game.GameWordToGuess.Length; i++)
+            for (byte i = 0; i < CurrentGame.GameWordToGuess.Length; i++)
             {
-                if (Game.GameWordToGuess[i] == randomChar)
+                if (CurrentGame.GameWordToGuess[i] == randomChar)
                 {
-                    var stringHelper = Game.GameWordHiddenLetters.ToCharArray();
+                    StringBuilder stringHelper = new StringBuilder(CurrentGame.GameWordHiddenLetters);
                     stringHelper[i] = randomChar;
-                    Game.GameWordHiddenLetters = stringHelper.ToString();
+                    CurrentGame.GameWordHiddenLetters = stringHelper.ToString();
                 }
             }
 
             this.IsHintUsed = true;
 
-            return Game;
+            return CurrentGame;
         }
-
         public void Score()
         {
             float score = WordToBeGuessed.WordContent.Length;
@@ -119,10 +117,20 @@ namespace WebHang.Data.Managers
                 score *= 0.95F;
             }
 
-            float mistakeModificator = Game.GameMistakes / 10.0F;
+            float mistakeModificator = CurrentGame.GameMistakes / 10.0F;
             score /= mistakeModificator;
 
             this.FinalScore = score;
+        }
+        public Game Start()
+        {
+            DBContext dBContext = new DBContext();
+            List<Word> filteredWords = dBContext.Words.ToList();
+            Random rnd = new Random();
+            Word word = filteredWords[rnd.Next(filteredWords.Count())];
+
+            Game game = new Game(word);
+            return game;
         }
     }
 }

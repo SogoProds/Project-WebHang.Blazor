@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebHang.Data;
+using WebHang.Data.Data_Interfaces;
 using WebHang.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,9 +14,9 @@ namespace HangingAPI.Controllers
     [Route("api/highscore")]
     public class HighscoreController : Controller
     {
-        private readonly IDataRepositoryCommon<Highscore> dataRepository;
+        private readonly IHighscoreManager<Highscore> dataRepository;
 
-        public HighscoreController(IDataRepositoryCommon<Highscore> dataRepository)
+        public HighscoreController(IHighscoreManager<Highscore> dataRepository)
         {
             this.dataRepository = dataRepository;
         }

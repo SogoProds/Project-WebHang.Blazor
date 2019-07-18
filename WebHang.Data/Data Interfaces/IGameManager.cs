@@ -9,5 +9,6 @@ namespace WebHang.Data.Data_Interfaces
         Game Guess(char guess);
         Game Hint();
         void Score();
+        Game Start();
     }
 }

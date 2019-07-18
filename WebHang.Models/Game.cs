@@ -6,6 +6,10 @@ namespace WebHang.Models
 {
     public class Game
     {
+        public Game()
+        {
+
+        }
         public Game(Word word)
         {
             GameWordToGuess = word.WordContent;

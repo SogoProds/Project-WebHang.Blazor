@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebHang.Data;
+using WebHang.Data.Data_Interfaces;
 using WebHang.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,9 +14,9 @@ namespace HangingAPI.Controllers
     [Route("api/player")]
     public class PlayerController : Controller
     {
-        private readonly IDataRepositoryCommon<Player> dataRepository;
+        private readonly IPlayerManager<Player> dataRepository;
 
-        public PlayerController(IDataRepositoryCommon<Player> dataRepository)
+        public PlayerController(IPlayerManager<Player> dataRepository)
         {
             this.dataRepository = dataRepository;
         }

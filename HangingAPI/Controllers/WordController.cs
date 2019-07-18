@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebHang.Data;
+using WebHang.Data.Data_Interfaces;
 using WebHang.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,9 +14,9 @@ namespace HangingAPI.Controllers
     [Route("api/word")]
     public class WordController : Controller
     {
-        private readonly IDataRepositoryCommon<Word> dataRepository;
+        private readonly IWordManager<Word> dataRepository;
 
-        public WordController(IDataRepositoryCommon<Word> dataRepository)
+        public WordController(IWordManager<Word> dataRepository)
         {
             this.dataRepository = dataRepository;
         }

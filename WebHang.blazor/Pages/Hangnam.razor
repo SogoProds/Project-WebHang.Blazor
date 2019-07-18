@@ -1,0 +1,46 @@
+﻿@page "/hangman"
+@inject HttpClient Http
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<button class="btn btn-primary" @onclick="@OnInitAsync">Click me</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            {
+                <tr>
+                    <td>@game.GameWordToGuess</td>
+                    <td>@game.GameWordHiddenLetters</td>
+                    <td>@game.GameMistakes</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+@code {
+
+Game game = new Game();
+
+protected override async Task OnInitAsync()
+{
+    game = await Http.GetJsonAsync<Game>("https://localhost:44387/api/game/Start");
+}
+
+class Game
+{
+    public string GameWordToGuess { get; set; }
+    public string GameWordHiddenLetters { get; set; }
+    public int GameMistakes { get; set; }
+    public bool GameFinished { get; set; }
+    public bool GameHintAvailable { get; set; }
+}
+}

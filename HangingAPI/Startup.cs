@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using WebHang.Data;
+using WebHang.Data.Data_Interfaces;
 using WebHang.Data.Managers;
 using WebHang.Models;
 
@@ -31,10 +32,11 @@ namespace HangingAPI
         {
             //services.AddDbContext<CarContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<DBContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:DefaultConnection"]));
-            services.AddScoped<IDataRepositoryCommon<Word>, WordManager>();
-            services.AddScoped<IDataRepositoryCommon<Player>, PlayerManager>();
-            services.AddScoped<IDataRepositoryCommon<Category>, CategoryManager>();
-            services.AddScoped<IDataRepositoryCommon<Highscore>, HighscoreManager>();
+            services.AddScoped<IWordManager<Word>, WordManager>();
+            services.AddScoped<IPlayerManager<Player>, PlayerManager>();
+            services.AddScoped<ICategoryManager<Category>, CategoryManager>();
+            services.AddScoped<IHighscoreManager<Highscore>, HighscoreManager>();
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
@@ -52,6 +54,12 @@ namespace HangingAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(options =>
+            {
+                options.AllowAnyHeader();
+                options.WithOrigins("http://localhost:55818");
+            });
 
             app.UseRouting();
 
